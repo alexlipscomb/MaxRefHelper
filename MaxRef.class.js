@@ -81,7 +81,13 @@ module.exports = class MaxRef {
         this.arguments = '<!--ARGUMENTS-->\n<objarglist>';
 
         for (var arg in args) {
-            this.arguments += `\n\t<objarg name=\"${escape(args[arg]['name'])}\" optional=\"${escape(args[arg]['optional'])}\" type=\"${escape(args[arg]['type'])}\">`;
+            var optionalFlag = '0';
+            var optionalArg = args[arg]['optional'];
+
+            if (optionalArg) {
+                optionalFlag = optionalArg === 'on' ? '1' : '0';
+            }
+            this.arguments += `\n\t<objarg name=\"${escape(args[arg]['name'])}\" optional=\"${escape(optionalFlag)}\" type=\"${escape(args[arg]['type'])}\">`;
 
             if ('digest' in args[arg]) {
                 this.arguments += `\n\t\t<digest>${escape(args[arg]['digest'])}</digest>`;
@@ -104,7 +110,14 @@ module.exports = class MaxRef {
                 this.messages += '\n\t\t<arglist>';
 
                 for (var arg in messages[message]['args']) {
-                    this.messages += `\n\t\t\t<arg name=\"${escape(messages[message]['args'][arg]['name'])}\" optional=\"${escape(messages[message]['args'][arg]['optional'])}\" type=\"${escape(messages[message]['args'][arg]['type'])}\" />`;
+                    var optionalFlag = '0';
+                    var optionalArg = messages[message]['args'][arg]['optional'];
+
+                    if (optionalArg) {
+                        optionalFlag = optionalArg === 'on' ? '1' : '0';
+                    }
+
+                    this.messages += `\n\t\t\t<arg name=\"${escape(messages[message]['args'][arg]['name'])}\" optional=\"${escape(optionalFlag)}\" type=\"${escape(messages[message]['args'][arg]['type'])}\" />`;
                 }
 
                 this.messages += '\n\t\t</arglist>';

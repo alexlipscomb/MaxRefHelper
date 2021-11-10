@@ -116,9 +116,8 @@ module.exports = {
                         else (argumentsJson[match[1]]) = { 'digest': data[key] };
                         break;
                     case 'optional':
-                        var optionalFlag = (data[key] == 'on' ? '1' : '0');
-                        if (argumentsJson[match[1]]) argumentsJson[match[1]]['optional'] = optionalFlag;
-                        else (argumentsJson[match[1]]) = { 'optional': optionalFlag };
+                        if (argumentsJson[match[1]]) argumentsJson[match[1]]['optional'] = data[key];
+                        else (argumentsJson[match[1]]) = { 'optional': data[key] };
                         break;
                 }
             }
@@ -192,9 +191,8 @@ module.exports = {
                         else (messageArgumentsJson[match[1]]) = { 'type': data[key] };
                         break;
                     case 'optional':
-                        var optionalFlag = (data[key] == 'on' ? '1' : '0');
-                        if (messageArgumentsJson[match[1]]) messageArgumentsJson[match[1]]['optional'] = optionalFlag;
-                        else (messageArgumentsJson[match[1]]) = { 'optional': optionalFlag };
+                        if (messageArgumentsJson[match[1]]) messageArgumentsJson[match[1]]['optional'] = data[key];
+                        else (messageArgumentsJson[match[1]]) = { 'optional': data[key] };
                         break;
                 }
             }
