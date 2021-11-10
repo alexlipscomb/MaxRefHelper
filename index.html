@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </link>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Maxref Helper</h1>
+    <form action="index.js" method="post">
+        <div>
+            <div id="object-name-container">
+                <label for="object-name">Object Name</label>
+                <input type="text" placeholder="Object name" name="object-name" id="object-name" required="true"
+                    autofocus="1">
+                <br>
+            </div>
+            <div id="object-author-container">
+                <label for="object-author">Author</label>
+                <input type="text" placeholder="Author" name="object-author" id="object-author" required="true">
+                <br>
+            </div>
+            <div id="object-digest-container">
+                <label>Digest</label>
+                <input type="text" placeholder="Digest" name="object-digest" id="object-digest">
+                <br>
+            </div>
+            <div id="object-description-container">
+                <label>Description</label>
+                <input type="text" placeholder="Description" name="object-description" id="object-description">
+                <br>
+            </div>
+        </div>
+        <hr>
+        <div id="inlets-container">
+            <h3>Inlets</h3>
+            <button type="button" id="add-inlet">Add Inlet</button>
+            <button type="button" id="delete-inlet">Delete Inlet</button>
+        </div>
+        <hr>
+        <div id="outlets-container">
+            <h3>Outlets</h3>
+            <button type="button" id="add-outlet">Add Outlet</button>
+            <button type="button" id="delete-outlet">Delete Outlet</button>
+        </div>
+        <hr>
+        <div id="arguments-container">
+            <h3>Arguments</h3>
+            <button type="button" id="add-argument">Add Argument</button>
+            <button type="button" id="delete-argument">Delete Argument</button>
+        </div>
+        <hr>
+        <div id="messages-container">
+            <h3>Messages</h3>
+            <button type="button" id="add-message">Add Message</button>
+            <button type="button" id="delete-message">Delete Message</button>
+            <br>
+        </div>
+        <hr>
+        <div id="attributes-container">
+            <h3>Attributes</h3>
+            <button type="button" id="add-attribute">Add Attribute</button>
+            <button type="button" id="delete-attribute">Delete Attribute</button>
+        </div>
+        <hr>
+        <button type="submit">Create MaxRef</button>
+    </form>
+
+    <script>
+        const numMessageArgumentElements = 7;
+
+        var numMessageArguments = 0;
+        var numMessages = 0;
+        var numInlets = 0;
+        var numOutlets = 0;
+        var numArguments = 0;
+        var numAttributes = 0;
+
+        function addInlet() {
+            const element = document.getElementById('inlets-container');
+
+            const inletDiv = document.createElement('div');
+            inletDiv.setAttribute('id', `inlet-${numInlets}`);
+
+            const inletNameLabel = document.createElement('h5');
+
+            const inletTypeLabel = document.createElement('label');
+            const inletType = document.createElement('input');
+            const inletDigestLabel = document.createElement('label');
+            const inletDigest = document.createElement('input');
+            const inletDescriptionLabel = document.createElement('label');
+            const inletDescription = document.createElement('input');
+
+            inletNameLabel.innerHTML = `Inlet ${numInlets}`;
+
+            inletType.setAttribute('type', 'text');
+            inletDigest.setAttribute('type', 'text');
+            inletDescription.setAttribute('type', 'text');
+
+            inletType.placeholder = 'Type';
+            inletDigest.placeholder = 'Digest';
+            inletDescription.placeholder = 'Description';
+
+            inletTypeLabel.innerHTML = 'Type';
+            inletDigestLabel.innerHTML = 'Digest';
+            inletDescriptionLabel.innerHTML = 'Description';
+
+            const br1 = document.createElement('br');
+            const br2 = document.createElement('br');
+            const br3 = document.createElement('br');
+
+            inletType.setAttribute('name', `inlet-${numInlets}-type`);
+            inletDigest.setAttribute('name', `inlet-${numInlets}-digest`);
+            inletDescription.setAttribute('name', `inlet-${numInlets}-description`);
+
+            inletDiv.appendChild(br1);
+            inletDiv.appendChild(inletNameLabel);
+            inletDiv.appendChild(inletTypeLabel);
+            inletDiv.appendChild(inletType);
+            inletDiv.appendChild(br2);
+            inletDiv.appendChild(inletDigestLabel);
+            inletDiv.appendChild(inletDigest);
+            inletDiv.appendChild(br3);
+            inletDiv.appendChild(inletDescriptionLabel);
+            inletDiv.appendChild(inletDescription);
+
+            element.appendChild(inletDiv);
+
+            numInlets++;
+        }
+
+        function deleteInlet() {
+            const element = document.getElementById(`inlet-${numInlets - 1}`);
+
+            if (element != null) {
+                element.remove();
+                numInlets--;
+            }
+
+        }
+
+        function addOutlet() {
+            const element = document.getElementById('outlets-container');
+
+            const outletDiv = document.createElement('div');
+            outletDiv.setAttribute('id', `outlet-${numOutlets}`);
+
+            const outletNameLabel = document.createElement('h5');
+
+            const outletTypeLabel = document.createElement('label');
+            const outletType = document.createElement('input');
+            const outletDigestLabel = document.createElement('label');
+            const outletDigest = document.createElement('input');
+            const outletDescriptionLabel = document.createElement('label');
+            const outletDescription = document.createElement('input');
+
+            outletNameLabel.innerHTML = `Outlet ${numOutlets}`;
+
+            outletType.setAttribute('type', 'text');
+            outletDigest.setAttribute('type', 'text');
+            outletDescription.setAttribute('type', 'text');
+
+            outletType.placeholder = 'Type';
+            outletDigest.placeholder = 'Digest';
+            outletDescription.placeholder = 'Description';
+
+            outletTypeLabel.innerHTML = 'Type';
+            outletDigestLabel.innerHTML = 'Digest';
+            outletDescriptionLabel.innerHTML = 'Description';
+
+            const br1 = document.createElement('br');
+            const br2 = document.createElement('br');
+            const br3 = document.createElement('br');
+
+            outletType.setAttribute('name', `outlet-${numOutlets}-type`);
+            outletDigest.setAttribute('name', `outlet-${numOutlets}-digest`);
+            outletDescription.setAttribute('name', `outlet-${numOutlets}-description`);
+
+            outletDiv.appendChild(br1);
+            outletDiv.appendChild(outletNameLabel);
+            outletDiv.appendChild(outletTypeLabel);
+            outletDiv.appendChild(outletType);
+            outletDiv.appendChild(br2);
+            outletDiv.appendChild(outletDigestLabel);
+            outletDiv.appendChild(outletDigest);
+            outletDiv.appendChild(br3);
+            outletDiv.appendChild(outletDescriptionLabel);
+            outletDiv.appendChild(outletDescription);
+
+            element.appendChild(outletDiv);
+
+            numOutlets++;
+        }
+
+        function deleteOutlet() {
+            const element = document.getElementById(`outlet-${numOutlets - 1}`);
+
+            if (element != null) {
+                element.remove();
+                numOutlets--;
+            }
+        }
+
+        function addArgument() {
+            const element = document.getElementById('arguments-container');
+            const argumentDiv = document.createElement('div');
+            argumentDiv.setAttribute('id', `argument-${numArguments}`);
+
+            const argumentHeader = document.createElement('h5');
+            const argumentNameLabel = document.createElement('label');
+            const argumentName = document.createElement('input');
+            const argumentTypeLabel = document.createElement('label');
+            const argumentType = document.createElement('input');
+            const argumentOptionalLabel = document.createElement('label');
+            const argumentOptional = document.createElement('input');
+            const argumentDigestLabel = document.createElement('label');
+            const argumentDigest = document.createElement('input');
+
+            const br1 = document.createElement('br');
+            const br2 = document.createElement('br');
+            const br3 = document.createElement('br');
+            const br4 = document.createElement('br');
+
+            argumentName.setAttribute('type', 'text');
+            argumentType.setAttribute('type', 'text');
+            argumentOptional.setAttribute('type', 'checkbox');
+            argumentDigest.setAttribute('type', 'text');
+            argumentName.setAttribute('required', 'true');
+
+            argumentOptional.checked = false;
+
+            argumentName.placeholder = 'Name';
+            argumentType.placeholder = 'Type';
+            argumentDigest.placeholder = 'Digest';
+
+            argumentHeader.innerHTML = `Argument ${numArguments}`;
+            argumentNameLabel.innerHTML = 'Name';
+            argumentTypeLabel.innerHTML = 'Type';
+            argumentOptionalLabel.innerHTML = 'Optional';
+            argumentDigestLabel.innerHTML = 'Digest';
+
+            argumentName.setAttribute('name', `argument-${numArguments}-name`);
+            argumentType.setAttribute('name', `argument-${numArguments}-type`);
+            argumentOptional.setAttribute('name', `argument-${numArguments}-optional`);
+            argumentDigest.setAttribute('name', `argument-${numArguments}-digest`);
+
+            argumentDiv.appendChild(argumentHeader);
+            argumentDiv.appendChild(br1);
+            argumentDiv.appendChild(argumentNameLabel);
+            argumentDiv.appendChild(argumentName);
+            argumentDiv.appendChild(br2);
+            argumentDiv.appendChild(argumentTypeLabel);
+            argumentDiv.appendChild(argumentType);
+            argumentDiv.appendChild(br3);
+            argumentDiv.appendChild(argumentOptionalLabel);
+            argumentDiv.appendChild(argumentOptional);
+            argumentDiv.appendChild(br4);
+            argumentDiv.appendChild(argumentDigestLabel);
+            argumentDiv.appendChild(argumentDigest);
+
+            element.appendChild(argumentDiv);
+
+            numArguments++;
+        }
+
+        function deleteArgument() {
+            const element = document.getElementById(`argument-${numArguments - 1}`);
+
+            if (element != null) {
+                element.remove();
+                numArguments--;
+            }
+        }
+
+        function addMessage() {
+            const element = document.getElementById('messages-container');
+            const messageDiv = document.createElement('div');
+            messageDiv.setAttribute('id', `message-${numMessages}`);
+
+            const messageHeader = document.createElement('h5');
+            const messageNameLabel = document.createElement('label');
+            const messageName = document.createElement('input');
+            const addArgumentButton = document.createElement('button');
+            const deleteArgumentButton = document.createElement('button');
+
+            const br1 = document.createElement('br');
+            const br2 = document.createElement('br');
+            const br3 = document.createElement('br');
+
+
+            messageHeader.innerHTML = `Message ${numMessages}`;
+            addArgumentButton.innerHTML = 'Add Argument';
+            deleteArgumentButton.innerHTML = 'Delete Argument';
+            messageNameLabel.innerHTML = 'Name';
+
+            messageName.placeholder = 'Name';
+
+            messageName.setAttribute('required', 'true');
+            messageName.setAttribute('name', `message-${numMessages}-name`);
+            addArgumentButton.setAttribute('type', 'button');
+            deleteArgumentButton.setAttribute('type', 'button');
+            messageName.setAttribute('type', 'text');
+
+            messageDiv.appendChild(messageHeader);
+            messageDiv.appendChild(br1);
+            messageDiv.appendChild(messageNameLabel);
+            messageDiv.appendChild(messageName);
+            messageDiv.appendChild(br3);
+            messageDiv.appendChild(addArgumentButton);
+            messageDiv.appendChild(deleteArgumentButton);
+
+            element.appendChild(messageDiv);
+
+            numMessages++;
+        }
+
+        function deleteMessage() {
+            const element = document.getElementById(`message-${numMessages - 1}`);
+
+            if (element != null) {
+                element.remove();
+                numMessages--;
+            }
+        }
+
+        function addMessageArgument(messageId) {
+            const element = document.getElementById(`message-${messageId}`);
+            const argumentDiv = document.createElement('div');
+            const argumentHeader = document.createElement('h5');
+            const argumentName = document.createElement('input');
+            const argumentType = document.createElement('input');
+            const argumentLabel = document.createElement('label');
+
+            const argumentOptional = document.createElement('input');
+            const argumentOptionalLabel = document.createElement('label');
+
+            const argumentTypeLabel = document.createElement('label');
+
+            const br1 = document.createElement('br');
+            const br2 = document.createElement('br');
+            const br3 = document.createElement('br');
+
+            argumentName.placeholder = 'Name';
+            argumentHeader.innerHTML = `Argument ${element.childElementCount - numMessageArgumentElements}`;
+            argumentLabel.innerHTML = 'Name';
+            argumentOptionalLabel.innerHTML = 'Optional';
+            argumentTypeLabel.innerHTML = 'Type';
+
+            argumentName.setAttribute('required', 'true');
+
+            argumentName.setAttribute('name', `message-${messageId}-argument-${element.childElementCount - numMessageArgumentElements}-name`);
+            argumentName.setAttribute('type', 'text');
+            argumentOptional.setAttribute('type', 'checkbox');
+            argumentType.setAttribute('type', 'text');
+            argumentType.setAttribute('name', `message-${messageId}-argument-${element.childElementCount - numMessageArgumentElements}-type`);
+            argumentOptional.setAttribute('name', `message-${messageId}-argument-${element.childElementCount - numMessageArgumentElements}-optional`)
+
+            argumentOptional.checked = false;
+
+            argumentDiv.appendChild(argumentHeader);
+            argumentDiv.appendChild(argumentLabel)
+            argumentDiv.appendChild(argumentName);
+            argumentDiv.appendChild(br1);
+            argumentDiv.appendChild(argumentOptionalLabel);
+            argumentDiv.appendChild(argumentOptional);
+            argumentDiv.appendChild(br2);
+            argumentDiv.appendChild(argumentTypeLabel);
+            argumentDiv.appendChild(argumentType);
+            argumentDiv.appendChild(br3);
+
+            argumentDiv.id = `message-${messageId}-argument-${element.childElementCount - numMessageArgumentElements}`;
+
+            element.appendChild(argumentDiv);
+        }
+
+        function deleteMessageArgument(messageId) {
+            const element = document.getElementById(`message-${messageId}`);
+
+            if (element == null) {
+                return;
+            }
+
+            const argumentElement = document.getElementById(`message-${messageId}-argument-${element.childElementCount - numMessageArgumentElements - 1}`);
+
+            if (argumentElement != null) {
+                argumentElement.remove();
+            }
+        }
+
+        function addAttribute() {
+            const element = document.getElementById('attributes-container');
+
+            const attributeDiv = document.createElement('div');
+            attributeDiv.setAttribute('id', `attribute-${numAttributes}`);
+
+            const attributeHeader = document.createElement('h5');
+            const nameLabel = document.createElement('label');
+            const attributeName = document.createElement('input');
+            const attributeTypeLabel = document.createElement('label');
+            const attributeType = document.createElement('input');
+            const getLabel = document.createElement('label');
+            const attributeGet = document.createElement('input');
+            const setLabel = document.createElement('label');
+            const attributeSet = document.createElement('input');
+            const digestLabel = document.createElement('label');
+            const attributeDigest = document.createElement('input');
+            const descriptionLabel = document.createElement('label');
+            const attributeDescription = document.createElement('input');
+
+            attributeName.setAttribute('required', 'true');
+
+            attributeName.setAttribute('type', 'text');
+            attributeType.setAttribute('type', 'text');
+            attributeDigest.setAttribute('type', 'text');
+            attributeDescription.setAttribute('type', 'text');
+            attributeGet.setAttribute('type', 'checkbox');
+            attributeSet.setAttribute('type', 'checkbox');
+
+            attributeGet.checked = false;
+            attributeSet.checked = false;
+
+            attributeName.placeholder = 'Name';
+            attributeType.placeholder = 'Type';
+            attributeDigest.placeholder = 'Digest';
+            attributeDescription.placeholder = 'Description';
+
+            attributeHeader.innerHTML = `Attribute ${numAttributes}`;
+            nameLabel.innerHTML = 'Attribute Name';
+            attributeTypeLabel.innerHTML = 'Attribute Type';
+            getLabel.innerHTML = 'Attribute Get';
+            setLabel.innerHTML = 'Attribute Set';
+            digestLabel.innerHTML = 'Digest';
+            descriptionLabel.innerHTML = 'Description';
+
+            const br1 = document.createElement('br');
+            const br2 = document.createElement('br');
+            const br3 = document.createElement('br');
+            const br4 = document.createElement('br');
+            const br5 = document.createElement('br');
+            const br6 = document.createElement('br');
+            const br7 = document.createElement('br');
+            const br8 = document.createElement('br');
+
+            attributeName.setAttribute('name', `attribute-${numAttributes}-name`);
+            attributeType.setAttribute('name', `attribute-${numAttributes}-type`);
+            attributeGet.setAttribute('name', `attribute-${numAttributes}-get`);
+            attributeSet.setAttribute('name', `attribute-${numAttributes}-set`);
+            attributeDigest.setAttribute('name', `attribute-${numAttributes}-digest`);
+            attributeDescription.setAttribute('name', `attribute-${numAttributes}-description`);
+
+            attributeDiv.appendChild(attributeHeader);
+            attributeDiv.appendChild(nameLabel);
+            attributeDiv.appendChild(br1);
+            attributeDiv.appendChild(attributeName);
+            attributeDiv.appendChild(br2);
+            attributeDiv.appendChild(attributeTypeLabel);
+            attributeDiv.appendChild(br3);
+            attributeDiv.appendChild(attributeType);
+            attributeDiv.appendChild(br4);
+            attributeDiv.appendChild(getLabel);
+            attributeDiv.appendChild(attributeGet);
+            attributeDiv.appendChild(setLabel);
+            attributeDiv.appendChild(attributeSet);
+            attributeDiv.appendChild(br5);
+            attributeDiv.appendChild(digestLabel);
+            attributeDiv.appendChild(br6);
+            attributeDiv.appendChild(attributeDigest);
+            attributeDiv.appendChild(br7);
+            attributeDiv.appendChild(descriptionLabel);
+            attributeDiv.appendChild(br8);
+            attributeDiv.appendChild(attributeDescription);
+
+            element.appendChild(attributeDiv);
+
+            numAttributes++;
+        }
+
+        function deleteAttribute() {
+            const element = document.getElementById(`attribute-${numAttributes - 1}`);
+
+            if (element != null) {
+                element.remove();
+                numAttributes--;
+            }
+        }
+
+        document.getElementById('add-message').addEventListener('click', addMessage, false);
+        document.getElementById('delete-message').addEventListener('click', deleteMessage, false);
+
+        document.addEventListener('click', (e) => {
+            if (!e.target) {
+                return;
+            }
+
+            var messageRegex = /message-([\d])/g;
+
+            try {
+                var messageId = messageRegex.exec(e.target.parentElement.id);
+
+                if (messageId) {
+                    switch (e.target.innerHTML) {
+                        case 'Add Argument':
+                            addMessageArgument(parseInt(messageId[1]));
+                            break;
+                        case 'Delete Argument':
+                            deleteMessageArgument(parseInt(messageId[1]));
+                            break;
+                    }
+                } else if (e.target.parentElement) {
+                    switch (e.target.innerHTML) {
+                        case 'Add Inlet':
+                            addInlet();
+                            break;
+                        case 'Delete Inlet':
+                            deleteInlet();
+                            break;
+                        case 'Add Outlet':
+                            addOutlet();
+                            break;
+                        case 'Delete Outlet':
+                            deleteOutlet();
+                            break;
+                        case 'Add Argument':
+                            addArgument();
+                            break;
+                        case 'Delete Argument':
+                            deleteArgument();
+                            break;
+                        case 'Add Attribute':
+                            addAttribute();
+                            break;
+                        case 'Delete Attribute':
+                            deleteAttribute();
+                            break;
+                    }
+                }
+            } catch (TypeError) {
+                return;
+            }
+        });
+    </script>
+</body>
+
+</html>
