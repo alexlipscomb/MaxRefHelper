@@ -273,13 +273,11 @@
 								"box" : 								{
 									"dontreplace" : 1,
 									"id" : "obj-105",
-									"linecount" : 4,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 73.0, 437.919705331325531, 146.0, 62.0 ],
-									"text" : ";\rmax launchbrowser file:///Users/alips/Documents/GitHub/MaxRefHelper"
+									"patching_rect" : [ 73.0, 437.919705331325531, 146.0, 62.0 ]
 								}
 
 							}
@@ -663,13 +661,7 @@
 								}
 
 							}
- ],
-						"bgfillcolor_type" : "gradient",
-						"bgfillcolor_color1" : [ 0.376471, 0.384314, 0.4, 1.0 ],
-						"bgfillcolor_color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-						"bgfillcolor_color" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-						"bgfillcolor_angle" : 270.0,
-						"bgfillcolor_proportion" : 0.39
+ ]
 					}
 ,
 					"patching_rect" : [ 422.636310974756896, 123.454545855522156, 121.0, 22.0 ],
@@ -713,12 +705,14 @@
 					"fontface" : 1,
 					"fontsize" : 12.0,
 					"id" : "obj-18",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 290.0, 249.0, 164.0, 20.0 ],
+					"patching_rect" : [ 290.0, 249.0, 164.0, 33.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 130.0, 3.030296146869659, 304.0, 20.0 ]
+					"presentation_rect" : [ 130.0, 3.030296146869659, 304.0, 20.0 ],
+					"text" : "MaxRef saved to ./testest.maxref.xml"
 				}
 
 			}
@@ -800,6 +794,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
