@@ -20,11 +20,9 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const formData = parse(body);
-            Max.post(formData);
 
             // Parse form
             const maxref = new MaxRef;
-            Max.post(formData);
             maxref.createObjectName(parseObjectName(formData));
             maxref.createDigest(parseObjectDigest(formData));
             maxref.createDescription(parseObjectDescription(formData));
