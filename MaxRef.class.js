@@ -129,7 +129,7 @@ module.exports = class MaxRef {
         this.attributes = '<!--ATTRIBUTES-->\n<attributelist>';
 
         for (var attribute in attributes) {
-            this.attributes = `\n\t<attribute name=\"${escape(attributes[attribute]['name'])}\" get=\"${escape(attributes[attribute]['get'])}\" set=\"${escape(attributes[attribute]['set'])}\" type=\"${escape(attributes[attribute]['type'])}\" size=\"${attributes[attribute]['size']}\" >`;
+            this.attributes += `\n\t<attribute name=\"${escape(attributes[attribute]['name'])}\" get=\"${escape(attributes[attribute]['get'])}\" set=\"${escape(attributes[attribute]['set'])}\" type=\"${escape(attributes[attribute]['type'])}\" size=\"${attributes[attribute]['size']}\" >`;
 
             if ('digest' in attributes[attribute]) {
                 this.attributes += `\n\t\t<digest>${escape(attributes[attribute]['digest'])}</digest>`;
