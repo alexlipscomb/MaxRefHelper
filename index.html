@@ -86,7 +86,7 @@
             const inletDiv = document.createElement('div');
             inletDiv.setAttribute('id', `inlet-${numInlets}`);
 
-            const inletNameLabel = document.createElement('h5');
+            const inletHeader = document.createElement('h5');
 
             const inletTypeLabel = document.createElement('label');
             const inletType = document.createElement('input');
@@ -95,7 +95,7 @@
             const inletDescriptionLabel = document.createElement('label');
             const inletDescription = document.createElement('input');
 
-            inletNameLabel.innerHTML = `Inlet ${numInlets}`;
+            inletHeader.innerHTML = `Inlet ${numInlets}`;
 
             inletType.setAttribute('type', 'text');
             inletDigest.setAttribute('type', 'text');
@@ -111,22 +111,12 @@
 
             const br1 = document.createElement('br');
             const br2 = document.createElement('br');
-            const br3 = document.createElement('br');
 
             inletType.setAttribute('name', `inlet-${numInlets}-type`);
             inletDigest.setAttribute('name', `inlet-${numInlets}-digest`);
             inletDescription.setAttribute('name', `inlet-${numInlets}-description`);
 
-            inletDiv.appendChild(br1);
-            inletDiv.appendChild(inletNameLabel);
-            inletDiv.appendChild(inletTypeLabel);
-            inletDiv.appendChild(inletType);
-            inletDiv.appendChild(br2);
-            inletDiv.appendChild(inletDigestLabel);
-            inletDiv.appendChild(inletDigest);
-            inletDiv.appendChild(br3);
-            inletDiv.appendChild(inletDescriptionLabel);
-            inletDiv.appendChild(inletDescription);
+            inletDiv.append(inletHeader, inletTypeLabel, inletType, br1, inletDigestLabel, inletDigest, br2, inletDescriptionLabel, inletDescription);
 
             element.appendChild(inletDiv);
 
@@ -149,7 +139,7 @@
             const outletDiv = document.createElement('div');
             outletDiv.setAttribute('id', `outlet-${numOutlets}`);
 
-            const outletNameLabel = document.createElement('h5');
+            const outletHeader = document.createElement('h5');
 
             const outletTypeLabel = document.createElement('label');
             const outletType = document.createElement('input');
@@ -158,7 +148,7 @@
             const outletDescriptionLabel = document.createElement('label');
             const outletDescription = document.createElement('input');
 
-            outletNameLabel.innerHTML = `Outlet ${numOutlets}`;
+            outletHeader.innerHTML = `Outlet ${numOutlets}`;
 
             outletType.setAttribute('type', 'text');
             outletDigest.setAttribute('type', 'text');
@@ -174,22 +164,12 @@
 
             const br1 = document.createElement('br');
             const br2 = document.createElement('br');
-            const br3 = document.createElement('br');
 
             outletType.setAttribute('name', `outlet-${numOutlets}-type`);
             outletDigest.setAttribute('name', `outlet-${numOutlets}-digest`);
             outletDescription.setAttribute('name', `outlet-${numOutlets}-description`);
 
-            outletDiv.appendChild(br1);
-            outletDiv.appendChild(outletNameLabel);
-            outletDiv.appendChild(outletTypeLabel);
-            outletDiv.appendChild(outletType);
-            outletDiv.appendChild(br2);
-            outletDiv.appendChild(outletDigestLabel);
-            outletDiv.appendChild(outletDigest);
-            outletDiv.appendChild(br3);
-            outletDiv.appendChild(outletDescriptionLabel);
-            outletDiv.appendChild(outletDescription);
+            outletDiv.append(outletHeader, outletTypeLabel, outletType, br1, outletDigestLabel, outletDigest, br2, outletDescriptionLabel, outletDescription);
 
             element.appendChild(outletDiv);
 
@@ -223,7 +203,6 @@
             const br1 = document.createElement('br');
             const br2 = document.createElement('br');
             const br3 = document.createElement('br');
-            const br4 = document.createElement('br');
 
             argumentName.setAttribute('type', 'text');
             argumentType.setAttribute('type', 'text');
@@ -248,19 +227,7 @@
             argumentOptional.setAttribute('name', `argument-${numArguments}-optional`);
             argumentDigest.setAttribute('name', `argument-${numArguments}-digest`);
 
-            argumentDiv.appendChild(argumentHeader);
-            argumentDiv.appendChild(br1);
-            argumentDiv.appendChild(argumentNameLabel);
-            argumentDiv.appendChild(argumentName);
-            argumentDiv.appendChild(br2);
-            argumentDiv.appendChild(argumentTypeLabel);
-            argumentDiv.appendChild(argumentType);
-            argumentDiv.appendChild(br3);
-            argumentDiv.appendChild(argumentOptionalLabel);
-            argumentDiv.appendChild(argumentOptional);
-            argumentDiv.appendChild(br4);
-            argumentDiv.appendChild(argumentDigestLabel);
-            argumentDiv.appendChild(argumentDigest);
+            argumentDiv.append(argumentHeader, argumentNameLabel, argumentName, br1, argumentTypeLabel, argumentType, br2, argumentOptionalLabel, argumentOptional, br3, argumentDigestLabel, argumentDigest);
 
             element.appendChild(argumentDiv);
 
@@ -284,6 +251,10 @@
             const messageHeader = document.createElement('h5');
             const messageNameLabel = document.createElement('label');
             const messageName = document.createElement('input');
+            const messageDigestLabel = document.createElement('label');
+            const messageDigest = document.createElement('input');
+            const messageDescriptionLabel = document.createElement('label');
+            const messageDescription = document.createElement('input');
             const addArgumentButton = document.createElement('button');
             const deleteArgumentButton = document.createElement('button');
 
@@ -291,27 +262,28 @@
             const br2 = document.createElement('br');
             const br3 = document.createElement('br');
 
-
             messageHeader.innerHTML = `Message ${numMessages}`;
+            messageDigestLabel.innerHTML = 'Digest';
+            messageDescriptionLabel.innerHTML = 'Description';
             addArgumentButton.innerHTML = 'Add Argument';
             deleteArgumentButton.innerHTML = 'Delete Argument';
             messageNameLabel.innerHTML = 'Name';
 
             messageName.placeholder = 'Name';
+            messageDigest.placeholder = 'Digest';
+            messageDescription.placeholder = 'Description';
 
             messageName.setAttribute('required', 'true');
             messageName.setAttribute('name', `message-${numMessages}-name`);
+            messageDigest.setAttribute('name', `message-${numMessages}-digest`);
+            messageDescription.setAttribute('name', `message-${numMessages}-description`);
+            messageDigest.setAttribute('type', 'text');
+            messageDescription.setAttribute('type', 'text');
             addArgumentButton.setAttribute('type', 'button');
             deleteArgumentButton.setAttribute('type', 'button');
             messageName.setAttribute('type', 'text');
 
-            messageDiv.appendChild(messageHeader);
-            messageDiv.appendChild(br1);
-            messageDiv.appendChild(messageNameLabel);
-            messageDiv.appendChild(messageName);
-            messageDiv.appendChild(br3);
-            messageDiv.appendChild(addArgumentButton);
-            messageDiv.appendChild(deleteArgumentButton);
+            messageDiv.append(messageHeader, messageNameLabel, messageName, br1, messageDigestLabel, messageDigest, br2, messageDescriptionLabel, messageDescription, br3, addArgumentButton, deleteArgumentButton);
 
             element.appendChild(messageDiv);
 
@@ -342,9 +314,10 @@
 
             const br1 = document.createElement('br');
             const br2 = document.createElement('br');
-            const br3 = document.createElement('br');
 
             argumentName.placeholder = 'Name';
+            argumentType.placeholder = 'Type';
+
             argumentHeader.innerHTML = `Argument ${element.childElementCount - numMessageArgumentElements}`;
             argumentLabel.innerHTML = 'Name';
             argumentOptionalLabel.innerHTML = 'Optional';
@@ -361,16 +334,7 @@
 
             argumentOptional.checked = false;
 
-            argumentDiv.appendChild(argumentHeader);
-            argumentDiv.appendChild(argumentLabel)
-            argumentDiv.appendChild(argumentName);
-            argumentDiv.appendChild(br1);
-            argumentDiv.appendChild(argumentOptionalLabel);
-            argumentDiv.appendChild(argumentOptional);
-            argumentDiv.appendChild(br2);
-            argumentDiv.appendChild(argumentTypeLabel);
-            argumentDiv.appendChild(argumentType);
-            argumentDiv.appendChild(br3);
+            argumentDiv.append(argumentHeader, argumentLabel, argumentName, br1, argumentOptionalLabel, argumentOptional, br2, argumentTypeLabel, argumentType);
 
             argumentDiv.id = `message-${messageId}-argument-${element.childElementCount - numMessageArgumentElements}`;
 
@@ -398,17 +362,17 @@
             attributeDiv.setAttribute('id', `attribute-${numAttributes}`);
 
             const attributeHeader = document.createElement('h5');
-            const nameLabel = document.createElement('label');
+            const attributeNameLabel = document.createElement('label');
             const attributeName = document.createElement('input');
             const attributeTypeLabel = document.createElement('label');
             const attributeType = document.createElement('input');
-            const getLabel = document.createElement('label');
+            const attributeGetLabel = document.createElement('label');
             const attributeGet = document.createElement('input');
-            const setLabel = document.createElement('label');
+            const attributeSetLabel = document.createElement('label');
             const attributeSet = document.createElement('input');
-            const digestLabel = document.createElement('label');
+            const attributeDigestLabel = document.createElement('label');
             const attributeDigest = document.createElement('input');
-            const descriptionLabel = document.createElement('label');
+            const attributeDescriptionLabel = document.createElement('label');
             const attributeDescription = document.createElement('input');
 
             attributeName.setAttribute('required', 'true');
@@ -429,21 +393,18 @@
             attributeDescription.placeholder = 'Description';
 
             attributeHeader.innerHTML = `Attribute ${numAttributes}`;
-            nameLabel.innerHTML = 'Attribute Name';
+            attributeNameLabel.innerHTML = 'Attribute Name';
             attributeTypeLabel.innerHTML = 'Attribute Type';
-            getLabel.innerHTML = 'Attribute Get';
-            setLabel.innerHTML = 'Attribute Set';
-            digestLabel.innerHTML = 'Digest';
-            descriptionLabel.innerHTML = 'Description';
+            attributeGetLabel.innerHTML = 'Attribute Get';
+            attributeSetLabel.innerHTML = 'Attribute Set';
+            attributeDigestLabel.innerHTML = 'Digest';
+            attributeDescriptionLabel.innerHTML = 'Description';
 
             const br1 = document.createElement('br');
             const br2 = document.createElement('br');
             const br3 = document.createElement('br');
             const br4 = document.createElement('br');
             const br5 = document.createElement('br');
-            const br6 = document.createElement('br');
-            const br7 = document.createElement('br');
-            const br8 = document.createElement('br');
 
             attributeName.setAttribute('name', `attribute-${numAttributes}-name`);
             attributeType.setAttribute('name', `attribute-${numAttributes}-type`);
@@ -452,27 +413,9 @@
             attributeDigest.setAttribute('name', `attribute-${numAttributes}-digest`);
             attributeDescription.setAttribute('name', `attribute-${numAttributes}-description`);
 
-            attributeDiv.appendChild(attributeHeader);
-            attributeDiv.appendChild(nameLabel);
-            attributeDiv.appendChild(br1);
-            attributeDiv.appendChild(attributeName);
-            attributeDiv.appendChild(br2);
-            attributeDiv.appendChild(attributeTypeLabel);
-            attributeDiv.appendChild(br3);
-            attributeDiv.appendChild(attributeType);
-            attributeDiv.appendChild(br4);
-            attributeDiv.appendChild(getLabel);
-            attributeDiv.appendChild(attributeGet);
-            attributeDiv.appendChild(setLabel);
-            attributeDiv.appendChild(attributeSet);
-            attributeDiv.appendChild(br5);
-            attributeDiv.appendChild(digestLabel);
-            attributeDiv.appendChild(br6);
-            attributeDiv.appendChild(attributeDigest);
-            attributeDiv.appendChild(br7);
-            attributeDiv.appendChild(descriptionLabel);
-            attributeDiv.appendChild(br8);
-            attributeDiv.appendChild(attributeDescription);
+            console.log("here");
+
+            attributeDiv.append(attributeHeader, attributeNameLabel, attributeName, br1, attributeTypeLabel, attributeType, br2, attributeGetLabel, attributeGet, br3, attributeSetLabel, attributeSet, br4, attributeDigestLabel, attributeDigest, br5, attributeDescriptionLabel, attributeDescription)
 
             element.appendChild(attributeDiv);
 
