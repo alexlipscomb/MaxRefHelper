@@ -81,13 +81,12 @@ module.exports = class MaxRef {
         this.arguments = '<!--ARGUMENTS-->\n<objarglist>';
 
         for (var arg in args) {
-            var optionalFlag = '0';
-            var optionalArg = args[arg]['optional'];
+            var optionalFlag = 0;
+            var optionalArg = escape(args[arg]['optional']);
 
-            if (optionalArg) {
-                optionalFlag = optionalArg === 'on' ? '1' : '0';
-            }
-            this.arguments += `\n\t<objarg name=\"${escape(args[arg]['name'])}\" optional=\"${escape(optionalFlag)}\" type=\"${escape(args[arg]['type'])}\">`;
+            if (optionalArg) optionalFlag = optionalArg === 'on' ? 1 : 0;
+
+            this.arguments += `\n\t<objarg name=\"${escape(args[arg]['name'])}\" optional=\"${optionalFlag}\" type=\"${escape(args[arg]['type'])}\">`;
 
             if ('digest' in args[arg]) {
                 this.arguments += `\n\t\t<digest>${escape(args[arg]['digest'])}</digest>`;
@@ -110,14 +109,12 @@ module.exports = class MaxRef {
                 this.messages += '\n\t\t<arglist>';
 
                 for (var arg in messages[message]['args']) {
-                    var optionalFlag = '0';
-                    var optionalArg = messages[message]['args'][arg]['optional'];
+                    var optionalFlag = 0;
+                    var optionalArg = escape(messages[message]['args'][arg]['optional']);
 
-                    if (optionalArg) {
-                        optionalFlag = optionalArg === 'on' ? '1' : '0';
-                    }
+                    if (optionalArg) optionalFlag = optionalArg === 'on' ? 1 : 0;
 
-                    this.messages += `\n\t\t\t<arg name=\"${escape(messages[message]['args'][arg]['name'])}\" optional=\"${escape(optionalFlag)}\" type=\"${escape(messages[message]['args'][arg]['type'])}\" />`;
+                    this.messages += `\n\t\t\t<arg name=\"${escape(messages[message]['args'][arg]['name'])}\" optional=\"${optionalFlag}\" type=\"${escape(messages[message]['args'][arg]['type'])}\" />`;
                 }
 
                 this.messages += '\n\t\t</arglist>';
@@ -142,7 +139,16 @@ module.exports = class MaxRef {
         this.attributes = '<!--ATTRIBUTES-->\n<attributelist>';
 
         for (var attribute in attributes) {
-            this.attributes += `\n\t<attribute name=\"${escape(attributes[attribute]['name'])}\" get=\"${escape(attributes[attribute]['get'])}\" set=\"${escape(attributes[attribute]['set'])}\" type=\"${escape(attributes[attribute]['type'])}\" size=\"${attributes[attribute]['size']}\" >`;
+            var attrGetFlag = 0;
+            var attrSetFlag = 0;
+
+            const attrGetArg = escape(attributes[attribute]['get']);
+            const attrSetArg = escape(attributes[attribute]['set']);
+
+            if (attrGetArg) attrGetFlag = attrGetArg === 'on' ? 1 : 0;
+            if (attrSetArg) attrSetFlag = attrSetArg === 'on' ? 1 : 0;
+
+            this.attributes += `\n\t<attribute name=\"${escape(attributes[attribute]['name'])}\" get=\"${attrGetFlag}\" set=\"${attrSetFlag}\" type=\"${escape(attributes[attribute]['type'])}\" size=\"${attributes[attribute]['size']}\" >`;
 
             if ('digest' in attributes[attribute]) {
                 this.attributes += `\n\t\t<digest>${escape(attributes[attribute]['digest'])}</digest>`;
