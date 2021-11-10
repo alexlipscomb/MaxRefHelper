@@ -142,7 +142,7 @@ module.exports = class MaxRef {
             this.attributes += '\n\t</attribute>';
         }
 
-        this.attributes += '</attributelist>';
+        this.attributes += '\n</attributelist>';
     }
 
     createXML() {

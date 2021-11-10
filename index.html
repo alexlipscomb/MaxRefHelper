@@ -370,6 +370,8 @@
             const attributeGet = document.createElement('input');
             const attributeSetLabel = document.createElement('label');
             const attributeSet = document.createElement('input');
+            const attributeSizeLabel = document.createElement('label');
+            const attributeSize = document.createElement('input');
             const attributeDigestLabel = document.createElement('label');
             const attributeDigest = document.createElement('input');
             const attributeDescriptionLabel = document.createElement('label');
@@ -379,10 +381,13 @@
 
             attributeName.setAttribute('type', 'text');
             attributeType.setAttribute('type', 'text');
-            attributeDigest.setAttribute('type', 'text');
-            attributeDescription.setAttribute('type', 'text');
             attributeGet.setAttribute('type', 'checkbox');
             attributeSet.setAttribute('type', 'checkbox');
+            attributeSize.setAttribute('type', 'number');
+            attributeSize.setAttribute('value', '1');
+            attributeSize.setAttribute('min', '0');
+            attributeDigest.setAttribute('type', 'text');
+            attributeDescription.setAttribute('type', 'text');
 
             attributeGet.checked = false;
             attributeSet.checked = false;
@@ -397,6 +402,7 @@
             attributeTypeLabel.innerHTML = 'Attribute Type';
             attributeGetLabel.innerHTML = 'Attribute Get';
             attributeSetLabel.innerHTML = 'Attribute Set';
+            attributeSizeLabel.innerHTML = 'Size'
             attributeDigestLabel.innerHTML = 'Digest';
             attributeDescriptionLabel.innerHTML = 'Description';
 
@@ -405,17 +411,17 @@
             const br3 = document.createElement('br');
             const br4 = document.createElement('br');
             const br5 = document.createElement('br');
+            const br6 = document.createElement('br');
 
             attributeName.setAttribute('name', `attribute-${numAttributes}-name`);
             attributeType.setAttribute('name', `attribute-${numAttributes}-type`);
             attributeGet.setAttribute('name', `attribute-${numAttributes}-get`);
             attributeSet.setAttribute('name', `attribute-${numAttributes}-set`);
+            attributeSize.setAttribute('name', `attribute-${numAttributes}-size`);
             attributeDigest.setAttribute('name', `attribute-${numAttributes}-digest`);
             attributeDescription.setAttribute('name', `attribute-${numAttributes}-description`);
 
-            console.log("here");
-
-            attributeDiv.append(attributeHeader, attributeNameLabel, attributeName, br1, attributeTypeLabel, attributeType, br2, attributeGetLabel, attributeGet, br3, attributeSetLabel, attributeSet, br4, attributeDigestLabel, attributeDigest, br5, attributeDescriptionLabel, attributeDescription)
+            attributeDiv.append(attributeHeader, attributeNameLabel, attributeName, br1, attributeTypeLabel, attributeType, br2, attributeGetLabel, attributeGet, br3, attributeSetLabel, attributeSet, br4, attributeSizeLabel, attributeSize, br5, attributeDigestLabel, attributeDigest, br6, attributeDescriptionLabel, attributeDescription);
 
             element.appendChild(attributeDiv);
 
