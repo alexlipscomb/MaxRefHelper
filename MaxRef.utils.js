@@ -116,9 +116,9 @@ module.exports = {
                         else (argumentsJson[match[1]]) = { 'digest': data[key] };
                         break;
                     case 'optional':
-                        var optionalValue = (data[key] == 'on' ? '1' : '0');
-                        if (argumentsJson[match[1]]) argumentsJson[match[1]]['optional'] = optionalValue;
-                        else (argumentsJson[match[1]]) = { 'optional': optionalValue };
+                        var optionalFlag = (data[key] == 'on' ? '1' : '0');
+                        if (argumentsJson[match[1]]) argumentsJson[match[1]]['optional'] = optionalFlag;
+                        else (argumentsJson[match[1]]) = { 'optional': optionalFlag };
                         break;
                 }
             }
@@ -192,9 +192,9 @@ module.exports = {
                         else (messageArgumentsJson[match[1]]) = { 'type': data[key] };
                         break;
                     case 'optional':
-                        var optionalValue = (data[key] === 'on' ? '1' : '0');
-                        if (messageArgumentsJson[match[1]]) messageArgumentsJson[match[1]]['optional'] = optionalValue;
-                        else (messageArgumentsJson[match[1]]) = { 'optional': optionalValue };
+                        var optionalFlag = (data[key] == 'on' ? '1' : '0');
+                        if (messageArgumentsJson[match[1]]) messageArgumentsJson[match[1]]['optional'] = optionalFlag;
+                        else (messageArgumentsJson[match[1]]) = { 'optional': optionalFlag };
                         break;
                 }
             }
@@ -218,12 +218,14 @@ module.exports = {
                         else (attributesJson[match[1]]) = { 'name': data[key] };
                         break;
                     case 'get':
-                        if (attributesJson[match[1]]) attributesJson[match[1]]['get'] = data[key];
-                        else (attributesJson[match[1]]) = { 'get': data[key] };
+                        var getFlag = data[key] == 'on' ? '1' : '0';
+                        if (attributesJson[match[1]]) attributesJson[match[1]]['get'] = getFlag;
+                        else (attributesJson[match[1]]) = { 'get': getFlag };
                         break;
                     case 'set':
-                        if (attributesJson[match[1]]) attributesJson[match[1]]['set'] = data[key];
-                        else (attributesJson[match[1]]) = { 'set': data[key] };
+                        var setFlag = data[key] == 'on' ? '1' : '0';
+                        if (attributesJson[match[1]]) attributesJson[match[1]]['set'] = setFlag;
+                        else (attributesJson[match[1]]) = { 'set': setFlag };
                         break;
                     case 'type':
                         if (attributesJson[match[1]]) attributesJson[match[1]]['type'] = data[key];

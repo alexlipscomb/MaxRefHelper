@@ -11,7 +11,6 @@ const port = 3000;
 
 const server = http.createServer((req, res) => {
     if (req.method === 'POST') {
-        Max.post('Something got sent to the post!');
 
         let body = '';
         req.on('data', chunk => {
@@ -23,7 +22,8 @@ const server = http.createServer((req, res) => {
 
             // Parse form
             const maxref = new MaxRef;
-            maxref.createObjectName(parseObjectName(formData));
+            const objectName = parseObjectName(formData);
+            maxref.createObjectName(objectName);
             maxref.createDigest(parseObjectDigest(formData));
             maxref.createDescription(parseObjectDescription(formData));
             maxref.createInlets(parseInlets(formData));
@@ -36,6 +36,17 @@ const server = http.createServer((req, res) => {
 
             res.writeHead(200, {
                 'content-type': 'text/plain'
+            });
+
+            fs.writeFile(`./${objectName}.maxref.xml`, maxrefXML, function (err) {
+                if (err) {
+                    return Max.post(err, 'ERROR');
+                }
+
+                const xmlCreationMessage = `MaxRef saved to ./${objectName}.maxref.xml`;
+
+                Max.post(xmlCreationMessage);
+                Max.outlet(xmlCreationMessage);
             });
 
             res.end(maxrefXML);
